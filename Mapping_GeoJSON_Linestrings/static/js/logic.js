@@ -34,13 +34,24 @@ L.control.layers(baseMaps).addTo(map);
 let torontoData = "https://raw.githubusercontent.com/afsharritter/M14_API/main/torontoRoutes.json";
 
 // Grabbing our GeoJSON data.
-d3.json(airportData).then(function(data) {
+d3.json(torontoData).then(function(data) {
   console.log(data);
   // Creating a GeoJSON layer with the retrieved data.
-  L.geoJSON(data).addTo(map);
+  L.geoJSON(data, {
+    color: "#ffffa1",
+    weight: 2,
+    onEachFeature: function(feature, layer) {
+      layer.bindPopup("<h3> Airline: " + feature.properties.airline + "</h3> <hr><h3> Destination: " + feature.properties.dst + "</h3>");
+    }
+  })
+  .addTo(map);
 });
 
-
+// Create a style for the lines.
+let myStyle = {
+  color: "#ffffa1",
+  weight: 2
+}
 
 
 
