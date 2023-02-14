@@ -28,23 +28,10 @@ let map = L.map('mapid', {
 // Pass our map layers into our layers control and add the layers control to the map.
 L.control.layers(baseMaps).addTo(map);
 
-// Accessing the airport GeoJSON URL
-let torontoHoods = "https://raw.githubusercontent.com/afsharritter/M14_API/main/torontoNeighborhoods.json";
-
-// Grabbing our GeoJSON data.
-d3.json(torontoHoods).then(function(data) {
-  console.log(data);
+// Retrieve the earthquake GeoJSON data.
+d3.json("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson").then(function(data) {
   // Creating a GeoJSON layer with the retrieved data.
-  L.geoJSON(data, {
-    color: "blue",
-    weight: 1,
-    fillColor: "#ffffa1",
-    fillOpacity: 0.4,
-    onEachFeature: function(feature, layer) {
-      layer.bindPopup("<h3>" + feature.properties.AREA_NAME + "</h3>");
-    }
-  })
-  .addTo(map);
+  L.geoJSON(data).addTo(map);
 });
 
 
