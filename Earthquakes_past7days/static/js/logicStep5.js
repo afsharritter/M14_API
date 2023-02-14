@@ -34,7 +34,7 @@ let earthquakes = new L.layerGroup();
 // We define an object that contains the overlays.
 // This overlay will be visible all the time.
 let overlays = {
-  Earthquakes: earthquakes
+  "Earthquakes": earthquakes
 };
 
 // Pass our map layers into our layers control and add the layers control to the map.
